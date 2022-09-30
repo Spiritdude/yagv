@@ -1,0 +1,7 @@
+*.bak
+*~
+/build
+/result
+/result-[0-9]
+/yagv_ng.egg-info/
+__pycache__/

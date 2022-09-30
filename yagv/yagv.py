@@ -4,16 +4,14 @@ YAGV_VERSION = "0.5.8"        # -- check Makefile and setup.py too
 
 import pyglet
 import math
-
-# Disable error checking for increased performance
-pyglet.options['debug_gl'] = False
+from pkg_resources import resource_filename
 
 from pyglet import clock
 from pyglet.gl import *
 from pyglet.window import key
 from pyglet.window import mouse
 
-from gcodeParser import *
+from .gcodeParser import *
 import os.path
 import time
 
@@ -94,9 +92,7 @@ class App:
 		if len(path)==0:
 			script_path = os.path.realpath(__file__)
 			script_dir = os.path.dirname(script_path)
-			path = os.path.join(script_dir, "data/hana_swimsuit_fv_solid_v1.gcode")
-			# WTF setuptools: no easy way to access EGG internal data file, we installed it in /usr/local/share/yagv/ instead :-(
-			path = "/usr/local/share/yagv/data/hana_swimsuit_fv_solid_v1.gcode"
+			path = resource_filename("yagv", "data/hana_swimsuit_fv_solid_v1.gcode")
 
 		print("Yet Another GCode Viewer v%s"%YAGV_VERSION)
 
@@ -115,9 +111,8 @@ class App:
 		self.layerIdx = len(self.model.layers)//2
 		self.window.hud()
 
-		#img = pyglet.resource.image("icon.png")
-		#img = pyglet.image.load("/usr/local/share/yagv/icon.png")
-		#self.window.set_icon(img)
+		img = pyglet.image.load(resource_filename("yagv", "data/icon.png"))
+		self.window.set_icon(img)
 
 		pyglet.app.run()
 
@@ -667,5 +662,3 @@ class MyWindow(pyglet.window.Window):
 		# reenable depth for next model display
 		glEnable(GL_DEPTH_TEST)
 		glDepthMask(1)
-
-App().main()

@@ -3,6 +3,7 @@ Version=1.0
 Type=Application
 Name=Yet Another Gcode Viewer
 GenericName=Gcode Viewer
+Icon=yagv
 Comment=YAGV display the content of G-Code files using OpenGL.
 Terminal=false
 Exec=yagv %f

@@ -7,11 +7,7 @@ all::
 
 install::
 	python3 setup.py install
-	sudo mkdir -p /usr/local/share/yagv;
-	sudo tar cf - icon.png data | (cd /usr/local/share/yagv/; sudo tar xf -)
-	#cp yagv.desktop ~/.local/share/applications/
-	sudo cp yagv.desktop /usr/share/applications/
-	
+
 deinstall::
 
 # -- devs only:
